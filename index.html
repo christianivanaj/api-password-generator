@@ -18,7 +18,7 @@
         <script>
           function generatePassword() {
             // Create an array to store the random values
-            var array = new Uint8Array(16);
+            var array = new Uint8Array(24);
             // Generate the random values using the crypto.getRandomValues() method
             window.crypto.getRandomValues(array);
             // Convert the array to a string using the btoa() method
