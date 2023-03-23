@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Password Generator</title>
     <link rel="stylesheet" href=".\styles.css">
+    <script src="https://kit.fontawesome.com/901b3da9b9.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -30,9 +31,7 @@
             document.getElementById("password").innerHTML = password;
           }
         </script>
-        <button onclick="generatePassword()">Generate Password</button>
-        <br />
-        <span id="password"></span>
+        <span id="password"></span> <button onclick="generatePassword()"><i class="fa-solid fa-arrows-rotate fa-sm"></i></button>
       </div>
     </div>
   </body>
