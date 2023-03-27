@@ -8,14 +8,30 @@ html {
 }
 
 body {
+  justify-content: center;
   font-family: 'Open Sans', sans-serif;
-  width: 800px;
+  width: 80%;
   text-align: center;
-  margin-top: 25%;
+  margin: 10% 0 0 10%;
 }
 
 header h1 {
   text-align: center;
   margin: -4px 0;
   letter-spacing: 0.15px
+}
+
+.pwField {
+  justify-content: center;
+  text-align: center;
+  margin: auto 25% 0px 25%;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+  margin-right: 0px;
 }
