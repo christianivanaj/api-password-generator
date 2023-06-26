@@ -4,14 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Password Generator</title>
+    <title>Password Generator | Christian Ivanaj</title>
     <link rel="stylesheet" href=".\styles.css" />
+    <!-- Call Google Font API -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap"
       rel="stylesheet"
     />
+    <!-- Call Font Awesome API -->
     <script
       src="https://kit.fontawesome.com/901b3da9b9.js"
       crossorigin="anonymous"
@@ -31,7 +33,9 @@
       <div class="pwGen">
         <!-- Parsing the scripts -->
         <script>
+          // Making "password" a global variable
           var password;
+          // Script to generate the password
           function generatePassword() {
             // Create an array to store the random values
             var array = new Uint8Array(32);
@@ -45,30 +49,35 @@
             // Display the password in the HTML
             document.getElementById("password").innerHTML = password;
 
+            // Reset the "copy to clipboard" tooltip
             var tooltip = document.getElementById("myTooltip");
             tooltip.innerHTML = "Copy to clipboard";
 
             return password;
           }
 
+          // Copy to clipboard script
           function copyPassword() {
+            // Grab the password from its variable
             var copyText = document.getElementById("password").innerHTML;
+            // Copy the password
             navigator.clipboard
               .writeText(copyText)
+              // If-then to check if it does copy it correctly
               .then(() => {
+                // If it succeeds, will change the tooltip to state it worked
                 var tooltip = document.getElementById("myTooltip");
                 tooltip.innerHTML = "Copied!";
               })
               .catch((err) => {
+                // Throws an error if it doesn't pull anything
                 alert("Error in copying: ", err);
               });
-
-            var tooltip = document.getElementById("myTooltip");
-            tooltip.innerHTML = "Copied!";
 
             return password;
           }
 
+          // Script for the tooltip to appear
           function outFunc() {
             var tooltip = document.getElementById("myTooltip");
             tooltip.innerHTML = "Copy to clipboard";
@@ -76,17 +85,23 @@
         </script>
 
         <div class="pwField">
+          <!-- Create the text field/box for the password -->
           <span id="password" class="left pwBox">Password</span>
+          <!-- Create the buttons -->
           <div class="buttons">
+            <!-- Attach the tooltip to each button through the div class -->
             <div class="tooltip">
+              <!-- Run the copy on click-->
               <button onclick="copyPassword()" onmouseout="outFunc">
                 <span class="tooltiptext" id="myTooltip"
                   >Copy to clipboard</span
                 >
+                <!-- Make the buttons Font Awesome for icons -->
                 <i class="fa-solid fa-copy"></i>
               </button>
             </div>
             <div class="tooltip">
+              <!-- Run password generation on click -->
               <button onclick="generatePassword()">
                 <span class="tooltiptext" id="myTooltip"
                   >Generate password</span
@@ -99,9 +114,10 @@
       </div>
     </div>
   </body>
+
   <footer>
     <div class="copyright">
-    <p>2023 © Christian Ivanaj</p>
+      <p>2023 © Christian Ivanaj</p>
     </div>
   </footer>
 </html>
