@@ -5,8 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Password Generator</title>
-    <link rel="stylesheet" href=".\styles.css">
-    <script src="https://kit.fontawesome.com/901b3da9b9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href=".\styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/901b3da9b9.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body>
@@ -14,28 +23,85 @@
       <div class="header">
         <h1>Password Generator</h1>
       </div>
+      <div class="info">
+        <h2>
+          Instantly generate a secure, random password with this online tool
+        </h2>
+      </div>
       <div class="pwGen">
-        <!-- Parsing the script -->
+        <!-- Parsing the scripts -->
         <script>
+          var password;
           function generatePassword() {
             // Create an array to store the random values
-            var array = new Uint8Array(24);
+            var array = new Uint8Array(32);
             // Generate the random values using the crypto.getRandomValues() method
             window.crypto.getRandomValues(array);
             // Convert the array to a string using the btoa() method
-            var password = btoa(String.fromCharCode.apply(null, array)).slice(
-              0,
-              16
+            let password = btoa(String.fromCharCode.apply(null, array)).slice(
+              8,
+              24
             );
             // Display the password in the HTML
             document.getElementById("password").innerHTML = password;
+
+            var tooltip = document.getElementById("myTooltip");
+            tooltip.innerHTML = "Copy to clipboard";
+
+            return password;
+          }
+
+          function copyPassword() {
+            var copyText = document.getElementById("password").innerHTML;
+            navigator.clipboard
+              .writeText(copyText)
+              .then(() => {
+                var tooltip = document.getElementById("myTooltip");
+                tooltip.innerHTML = "Copied!";
+              })
+              .catch((err) => {
+                alert("Error in copying: ", err);
+              });
+
+            var tooltip = document.getElementById("myTooltip");
+            tooltip.innerHTML = "Copied!";
+
+            return password;
+          }
+
+          function outFunc() {
+            var tooltip = document.getElementById("myTooltip");
+            tooltip.innerHTML = "Copy to clipboard";
           }
         </script>
+
         <div class="pwField">
-          <span id="password"></span>
-          <br>
-          <span class="right"></span><button onclick="generatePassword()"><i class="fa-solid fa-arrows-rotate fa-sm"></i></button>        </div>
+          <span id="password" class="left pwBox">Password</span>
+          <div class="buttons">
+            <div class="tooltip">
+              <button onclick="copyPassword()" onmouseout="outFunc">
+                <span class="tooltiptext" id="myTooltip"
+                  >Copy to clipboard</span
+                >
+                <i class="fa-solid fa-copy"></i>
+              </button>
+            </div>
+            <div class="tooltip">
+              <button onclick="generatePassword()">
+                <span class="tooltiptext" id="myTooltip"
+                  >Generate password</span
+                >
+                <i class="fa-solid fa-arrows-rotate fa-sm"></i>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
+  <footer>
+    <div class="copyright">
+    <p>2023 © Christian Ivanaj</p>
+    </div>
+  </footer>
 </html>
